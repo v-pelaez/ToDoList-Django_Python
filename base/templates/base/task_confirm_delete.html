@@ -1,0 +1,17 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+<div class="task-confirm-delete">
+    <h1>Eliminar Tarea</h1>
+
+    <form method="post" class="delete-form">
+        {% csrf_token %}
+        <p class="warning-text">¿Estás seguro de que quieres eliminar la tarea: <br>
+            <strong>"{{ task }}"</strong>?</p>
+        <div class="buttons">
+            <input type="submit" value="Confirmar Eliminación" class="btn-delete">
+            <a href="{% url 'home' %}" class="cancel-link">Volver atras</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

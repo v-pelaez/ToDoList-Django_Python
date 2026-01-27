@@ -1,0 +1,51 @@
+{% extends 'base/main.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<div class="task-list">
+    <div class="top-bar">
+        <span>Hola, <strong>{{ request.user|capfirst }}</strong> 👋</span>
+        <form action="{% url 'logout' %}" method="post" style="margin:0;">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </form>
+    </div>
+
+    <header class="header-flex">
+        <h1>Mis Tareas</h1>
+        <a href="{% url 'add' %}" class="btn-add"><i class="fa-solid fa-plus"></i> Nueva Tarea</a>
+    </header>
+
+    <form method="get" class="search-container">
+        <input type="text" name="search" class="search-input" placeholder="Buscar tarea..."
+               value="{{ request.GET.search }}">
+        <button type="submit" class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <section class="task-grid">
+    {% for task in tasks %}
+    <div class="task-card {% if task.completed %}completed{% endif %}">
+        <div class="task-header">
+            <a href="{% url 'task' task.id %}" class="task-title">{{ task.title }}</a>
+            <span>{% if task.completed %}✅{% else %}⏳{% endif %}</span>
+        </div>
+        <p class="task-info">
+            <i class="fa-solid fa-calendar"></i>
+            {{ task.deadline|date:"d M, Y" | default:"Sin fecha" }}
+        </p>
+        <p class="task-info">
+            <i class="fa-solid fa-layer-group"></i>
+            {{ task.get_priority_display }}
+        </p>
+        <div class="actions">
+            <a href="{% url 'update' task.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="{% url 'delete' task.id %}" style="color:#dc3545;"><i class="fa-solid fa-trash"></i></a>
+        </div>
+    </div>
+    {% empty %}
+    <div class = "empty-task">
+        <p>No se han encontrado tareas.</p>
+    </div>
+    {% endfor %}
+</section>
+</div>
+{% endblock %}

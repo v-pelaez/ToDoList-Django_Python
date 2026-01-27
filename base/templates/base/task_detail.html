@@ -1,0 +1,43 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+<article class="task-detail">
+    <header>
+        <h1>{{ task.title }}</h1>
+        <p class="subtitle">ID #{{ task.id }}</p>
+    </header>
+
+    <hr class="divider">
+
+    <div class="detail-meta">
+        <section>
+            <p><strong>Prioridad:</strong> {{ task.get_priority_display }}</p>
+            <p><strong>Fecha límite:</strong> {{ task.deadline|date:"d/m/Y" | default:"Sin fecha"}}</p>
+        </section>
+
+        <section>
+            <h3>Etiquetas</h3>
+            {% if task.tags_raw %}
+            <div class="tags-container">
+                {% for tag in task.get_tags_list %}
+                <span class="tag-badge">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>Sin etiquetas.</p>
+            {% endif %}
+        </section>
+    </div>
+
+    <section class="description-section">
+        <h3>Descripción</h3>
+        <div class="description-content">
+            {{ task.description|default:"No hay una descripción detallada para esta tarea." }}
+        </div>
+    </section>
+
+    <footer class="footer-actions">
+        <a href="{% url 'home' %}" class="btn-link">Volver a la lista</a>
+    </footer>
+</article>
+{% endblock %}
