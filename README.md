@@ -17,22 +17,22 @@ A task management web application built with Python and Django.
 
 ## Getting Started
 
-1. **Clone the repository: **
+1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/v-pelaez/ToDoList-Django_Python.git](https://github.com/v-pelaez/ToDoList-Django_Python.git)
+   git clone https://github.com/v-pelaez/ToDoList-Django_Python.git
    cd ToDoList-Django_Python
    ```
-2. ** Install Django : ** Make sure you have Django installed in your enviroment:
+3. **Install Django:** Make sure you have Django installed in your enviroment:
    ```bash
    pip install django
    ```
-4. ** Run Migrations : **
+4. **Run Migrations:**
    ```bash
    python manage.py migrate
    ```
-6. ** Start the Server : **
+6. **Start the Server:**
    ```bash
    python manage.py runserver
    ```
-8. ** View the app: ** Navigate to `http://127.0.0.1:8000` in your browser
+8. **View the app:** Navigate to `http://127.0.0.1:8000` in your browser
    
