@@ -1,0 +1,92 @@
+[
+  {
+    "id_task": 1,
+    "title": "Configurar servidor base",
+    "description": "Instalar dependencias de Node.js y configurar variables de entorno.",
+    "deadline": "2024-03-15",
+    "priority": "Alta",
+    "tags": ["backend", "infraestructura"],
+    "completed": true
+  },
+  {
+    "id_task": 2,
+    "title": "Diseñar landing page",
+    "description": "Crear el prototipo en Figma para la página de inicio.",
+    "deadline": "2024-03-20",
+    "priority": "Media",
+    "tags": ["diseño", "frontend"],
+    "completed": false
+  },
+  {
+    "id_task": 3,
+    "title": "Optimizar consultas SQL",
+    "description": "Revisar los índices de la tabla de usuarios para mejorar el rendimiento.",
+    "deadline": "2024-03-22",
+    "priority": "Alta",
+    "tags": ["db", "optimización"],
+    "completed": false
+  },
+  {
+    "id_task": 4,
+    "title": "Redactar manual de usuario",
+    "description": "Escribir la documentación básica para el módulo de facturación.",
+    "deadline": "2024-04-01",
+    "priority": "Baja",
+    "tags": ["documentación", "ayuda"],
+    "completed": false
+  },
+  {
+    "id_task": 5,
+    "title": "Corregir bug de login",
+    "description": "Reparar el error 401 que ocurre intermitentemente en Safari.",
+    "deadline": "2024-03-12",
+    "priority": "Crítica",
+    "tags": ["bug", "seguridad"],
+    "completed": true
+  },
+  {
+    "id_task": 6,
+    "title": "Integrar pasarela de pagos",
+    "description": "Implementar la API de Stripe para suscripciones mensuales.",
+    "deadline": "2024-04-10",
+    "priority": "Alta",
+    "tags": ["ventas", "api"],
+    "completed": false
+  },
+  {
+    "id_task": 7,
+    "title": "Reunión de sprint",
+    "description": "Planificar las tareas para las próximas dos semanas.",
+    "deadline": "2024-03-18",
+    "priority": "Media",
+    "tags": ["gestión", "agile"],
+    "completed": true
+  },
+  {
+    "id_task": 8,
+    "title": "Actualizar dependencias",
+    "description": "Subir de versión los paquetes de React y librerías de estilos.",
+    "deadline": "2024-03-25",
+    "priority": "Baja",
+    "tags": ["mantenimiento", "frontend"],
+    "completed": false
+  },
+  {
+    "id_task": 9,
+    "title": "Testeo de carga",
+    "description": "Realizar pruebas de estrés simulando 1000 usuarios concurrentes.",
+    "deadline": "2024-03-28",
+    "priority": "Media",
+    "tags": ["qa", "performance"],
+    "completed": false
+  },
+  {
+    "id_task": 10,
+    "title": "Limpieza de logs",
+    "description": "Archivar registros antiguos del servidor de producción.",
+    "deadline": "2024-03-30",
+    "priority": "Baja",
+    "tags": ["mantenimiento", "servidor"],
+    "completed": false
+  }
+]
