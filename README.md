@@ -1,0 +1,1 @@
+This branch features a terminal-based version of the To-Do List application, focusing on core CRUD logic using pure Python. It strips away the Django web overhead to provide a lightweight, console-driven experience where users can manage tasks directly through the command line.
