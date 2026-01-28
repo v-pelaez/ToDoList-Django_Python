@@ -6,6 +6,7 @@ class Task:
     def __init__(self, id_task: int, title: str, priority: str,
                  tags: list[str] = [], completed: bool = False, description: Optional[str] = "",
                  deadline: Optional[date] = None) -> None:
+        """Constructor de la clase Task."""
         self._id_task = id_task
         self._title = title
         self._description = description or ""
@@ -14,7 +15,7 @@ class Task:
         self._tags = tags[:]
         self._completed = completed
 
-    # Properties CORREGIDOS
+    # Properties
     @property
     def id_task(self) -> int:
         return self._id_task
@@ -36,7 +37,7 @@ class Task:
         self._description = description
 
     @property
-    def deadline(self) -> Optional[date]:  # Optional!
+    def deadline(self) -> Optional[date]: 
         return self._deadline
 
     @deadline.setter
@@ -68,8 +69,9 @@ class Task:
         self._completed = completed
 
     def print_task(self) -> None:
+        """Imprime la tarea en formato de la tabla. Tambien formatea la fecha y el estado."""
         status = "✓" if self.completed else "○"
         deadline_str = str(self.deadline)[:10] if self.deadline else "Sin fecha  "
 
         # Formato tabla: | ID | Título | Pri | Status | Fecha    | Tags | Descripcion
-        print(f"| {self._id_task} | {self.title[:25]:25} | {self.priority[:3]:3} | {status:2} | {deadline_str:10} | {', '.join(self.tags)[:12]:<12} | {self.description:10} |")
+        print(f"| {self._id_task} | {self.title:25} | {self.priority:3} | {status:2} | {deadline_str:10} | {', '.join(self.tags):12} | {self.description:10} |")
