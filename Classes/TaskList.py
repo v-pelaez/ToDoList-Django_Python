@@ -1,15 +1,19 @@
+from typing import List, Optional
+from datetime import date
 from Classes.Task import Task
 from Classes.Utils import Utils
 
 class TaskList:
-    def __init__(self, id_list: int, list_name: str, filepath: str = Utils.DEFAULT_FILE):
-        """Constructor de la clase TaskList."""
-        self._id_list, self._list_name, self.filepath = id_list, list_name, filepath
-        self._content = []
-        self.load_from_file()  # Auto-carga
+    def __init__(self, id_list: int, list_name: str, filepath: str = Utils.DEFAULT_FILE) -> None:
+
+        self._id_list = id_list
+        self._list_name = list_name
+        self.filepath = filepath
+        self._content: List[Task] = []
+        self.load_from_file()
 
     def load_from_file(self) -> bool:
-        """Carga la lista de tareas desde el archivo. Retorna True si tuvo éxito, False si no."""
+
         try:
             self._content = Utils.dicts_to_tasks(Utils.load_tasks_list(self.filepath))
             return True
@@ -17,39 +21,37 @@ class TaskList:
             return False
 
     def save_to_file(self) -> bool:
-        """Guarda la lista de tareas en el archivo. Retorna True si tuvo éxito, False si no."""
+
         return Utils.save_tasks_list(self._content, self.filepath)
 
-
     def add_task(self, task: Task) -> None:
-        """Agrega una tarea a la lista."""
-        self.content.append(task)
+
+        self._content.append(task)
 
     def remove_task(self, index: int) -> None:
-        """Elimina una tarea de la lista por su índice."""
-        self.content.pop(index)
+
+        self._content.pop(index)
 
     def complete_task(self, index: int) -> None:
-        """Marca una tarea como completada por su índice."""
-        self.content[index].completed = True
+
+        self._content[index].completed = True
 
     def complete_all(self) -> None:
-        """Marca todas las tareas como completadas."""
-        for task in self.content:
+
+        for task in self._content:
             task.completed = True
 
     def restart_all(self) -> None:
-        """Marca todas las tareas como no completadas."""
-        for task in self.content:
+
+        for task in self._content:
             task.completed = False
 
     @property
     def id_task(self) -> int:
-        
         return self._id_list
 
     @id_task.setter
-    def id_task(self, id_task: str) -> None:
+    def id_task(self, id_task: int) -> None:
         self._id_list = id_task
 
     @property
@@ -61,71 +63,50 @@ class TaskList:
         self._list_name = list_name
 
     @property
-    def content(self) -> list[Task]:
+    def content(self) -> List[Task]:
         return self._content
 
     @content.setter
-    def content(self, content: list[Task]) -> None:
+    def content(self, content: List[Task]) -> None:
         self._content = content
 
-    def print_tasks(self, tasks_to_print: list[Task] = None, title: str = "TAREAS") -> None:
-        """Imprime la lista de tareas en formato de tabla. Acepta una lista opcional de tareas a imprimir."""
-        
-        # Si no pasan una lista específica, usamos el contenido total
-        target_list = tasks_to_print if tasks_to_print is not None else self.content
 
-        print(f"\n {title.upper()}")
-        print("-" * 85)
-        print("| ID | Título                    | Pri | ✓ | Fecha       | Tags          | Descripcion                        |")
-        print("-" * 85)
+    def get_filtered_and_sorted(self, filter_by: Optional[str] = None, filter_val: Optional[str] = None, sort_by: str = "creacion") -> List[Task]:
+        # Filtro y ordeno los datos para la tabla de la interfaz
+        filtered_list: List[Task] = []
+        search_val = filter_val.lower().strip() if filter_val else ""
 
-        if not target_list:
-            print("| " + "No hay tareas para mostrar".center(81) + " |")
-        else:
-            for task in target_list:
-                task.print_task()
-
-        print("-" * 85)
-        print(f"Total: {len(target_list)} tareas")
-
-    def get_filtered_and_sorted(self, filter_by=None, filter_val=None, sort_by="creacion"):
-        """Filtra y ordena las tareas por criterios."""
-
-        filtered_list = []
-        for task in self.content:
+        # Lógica de filtrado
+        for task in self._content:
             if filter_by == "estado":
-                is_completed = (filter_val == "completada")
-                if task.completed == is_completed:
+                if (search_val == "completada") == task.completed:
                     filtered_list.append(task)
             elif filter_by == "prioridad":
-                if task.priority == filter_val:
+                if task.priority.lower() == search_val:
                     filtered_list.append(task)
             elif filter_by == "etiqueta":
-                for tag in task.tags:
-                    if filter_val.lower() in tag.lower():
-                        filtered_list.append(task)
-                        break
+                if any(search_val in tag.lower() for tag in task.tags):
+                    filtered_list.append(task)
             else:
+                # Si no hay filtros activos, incluyo la tarea
                 filtered_list.append(task)
 
-        # Funciones de ayuda para ordenación
-        def by_date(task):
-            # True va después de False; así las tareas sin fecha (None) aparecen al final
-            return (task.deadline is None, task.deadline)
+        # Lógica de ordenación
+        def by_date(task: Task) -> date:
+            # Uso date.max para que las tareas sin fecha aparezcan siempre al final
+            return task.deadline if task.deadline else date.max
 
-        def by_priority(task):
-            pesos = {"alta": 0, "media": 1, "baja": 2}
-            return pesos.get(task.priority, 3)
+        def by_priority(task: Task) -> int:
+            # Mapeo de importancia para ordenar correctamente por texto
+            weights = {"alta": 0, "media": 1, "baja": 2}
+            return weights.get(task.priority.lower(), 3)
 
-        def by_id(task):
-            return task.id_task
-
-        # Aplicar la ordenación
         if sort_by == "fecha":
             filtered_list.sort(key=by_date)
         elif sort_by == "prioridad":
             filtered_list.sort(key=by_priority)
         else:
-            filtered_list.sort(key=by_id)
+            # Orden por ID (orden de creación original)
+            filtered_list.sort(key=lambda t: t.id_task)
 
         return filtered_list

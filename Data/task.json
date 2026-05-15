@@ -1,47 +1,61 @@
 [
-  {
-    "id_task": 1,
-    "title": "Hacer la compra semanal",
-    "description": "Comprar frutas, verduras y leche para la semana.",
-    "deadline": "2024-03-15",
-    "priority": "Alta",
-    "tags": ["hogar", "comida"],
-    "completed": false
-  },
-  {
-    "id_task": 2,
-    "title": "Llevar el coche al taller",
-    "description": "Revisión de aceite y filtros anual.",
-    "deadline": "2024-03-20",
-    "priority": "Media",
-    "tags": ["mantenimiento", "coche"],
-    "completed": true
-  },
-  {
-    "id_task": 3,
-    "title": "Pedir cita en el dentista",
-    "description": "Llamar para la limpieza bucal de control.",
-    "deadline": "2024-03-22",
-    "priority": "Media",
-    "tags": ["salud"],
-    "completed": false
-  },
-  {
-    "id_task": 4,
-    "title": "Pagar el recibo de la luz",
-    "description": "Abonar la factura del mes de febrero antes del vencimiento.",
-    "deadline": "2024-03-12",
-    "priority": "Alta",
-    "tags": ["finanzas", "facturas"],
-    "completed": true
-  },
-  {
-    "id_task": 5,
-    "title": "Ir al gimnasio",
-    "description": "Entrenamiento de fuerza y 30 minutos de cardio.",
-    "deadline": "2024-03-18",
-    "priority": "Baja",
-    "tags": ["deporte", "salud"],
-    "completed": false
-  }
+    {
+        "id_task": 1,
+        "title": "Hacer la compra semanal",
+        "description": "Comprar frutas, verduras y leche para la semana.",
+        "deadline": "2024-03-15",
+        "priority": "Alta",
+        "tags": [
+            "hogar",
+            "comida"
+        ],
+        "completed": false
+    },
+    {
+        "id_task": 2,
+        "title": "Llevar el coche al taller",
+        "description": "Revisión de aceite y filtros anual.",
+        "deadline": "2024-03-20",
+        "priority": "Media",
+        "tags": [
+            "mantenimiento",
+            "coche"
+        ],
+        "completed": true
+    },
+    {
+        "id_task": 3,
+        "title": "Pedir cita en el dentista",
+        "description": "Llamar para la limpieza bucal de control.",
+        "deadline": "2024-03-22",
+        "priority": "Media",
+        "tags": [
+            "salud"
+        ],
+        "completed": false
+    },
+    {
+        "id_task": 4,
+        "title": "Pagar el recibo de la luz",
+        "description": "Abonar la factura del mes de febrero antes del vencimiento.",
+        "deadline": "2024-03-12",
+        "priority": "Alta",
+        "tags": [
+            "finanzas",
+            "facturas"
+        ],
+        "completed": true
+    },
+    {
+        "id_task": 5,
+        "title": "Ir al gimnasio",
+        "description": "Entrenamiento de fuerza y 30 minutos de cardio.",
+        "deadline": "2024-03-18",
+        "priority": "Baja",
+        "tags": [
+            "deporte",
+            "salud"
+        ],
+        "completed": true
+    }
 ]
